@@ -1,0 +1,10 @@
+{
+	"name": "ikhasi-server",
+	"version": "0.0.1",
+	"dependencies" : {
+		"websocket" : "*",
+		"socket.io" : "*",
+		"sails":"git://github.com/balderdashy/sails.git",
+    "browserify":"*"
+	}
+}

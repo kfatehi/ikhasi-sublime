@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebSockets - Simple chat</title>
+    <script src="assets/js/google-code-prettify/prettify.js"></script>
+    <script src="assets/js/socket.io.min.js"></script>
+
+    <script src="assets/js/jquery-1.9.1.min.js"></script>
+    <script> 
+      // jQuery.fn.prettify = function () { this.html(prettyPrintOne(this.html())); };
+    </script>
+    <link rel="stylesheet" type="text/css" href="assets/js/google-code-prettify/prettify.css">
+    <style>
+    </style>
+  </head>
+  <body>
+    <pre id="content" class="prettyprint linenums"></pre>
+    <script>
+      var socket = io.connect('http://127.0.0.1:6543');
+      socket.on('content', function (data) {
+        console.log(data)
+        $("#content").text(data);
+        
+      });
+
+    </script>
+  </body>
+</html>
