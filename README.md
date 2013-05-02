@@ -8,3 +8,11 @@ get sublime to print your current sublime text content view into an html div ove
 3. Lift sails (XD) `cd html_client`, `npm install`, `sails lift`
 
 For a much more baked implementation, check out [Floobits](http://floobits.com)
+
+# Who?
+
+Despite the git author and repo owner being keyvanfatehi, credit for this source code goes to [jeanreswanepoel](https://github.com/jeanreswanepoel/)
+
+# License
+
+WTFPL
