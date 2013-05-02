@@ -13,27 +13,35 @@ class ikhasiEvents(sublime_plugin.EventListener):
 		self.pending = self.pending + 1
 		sublime.set_timeout(lambda: self.pushContent(view), 1000)
 
+	# TODO need to send cursor location updates at least periodically
+	def on_cursor_position_change(self, view):
+		self.socketIO.emit('cursor', ['x','y'])
+
+	# TODO needs to send only the lambda and position
 	def pushContent(self, view):
 		self.pending = self.pending - 1
 		if self.pending == 0:
-			self.queue.put(view.substr(sublime.Region(0, view.size())))
+			content = view.substr(sublime.Region(0, view.size()))
+			self.queue.put(content)
 
 class ikhasiThread(threading.Thread):
 	def __init__(self, queue):
-		self.queue = queue
 		threading.Thread.__init__ (self)
+		self.host = "127.0.0.1"
+		self.port = 6543
+		self.queue = queue
 
 	def run(self):
 		while True:
-			content = self.queue.get()
+			print self.queue.qsize()
+
+			
+			content = self.queue.get(True)
 			t = threading.Thread(self.sendData(content))
 			t.start()
 
 	def sendData(self, content):
-		host = "127.0.0.1"
-		port = 6543
-		socketIO = SocketIO(host, port)
-		socketIO.emit('push', content)
+		socketIO = SocketIO(self.host, self.port)
+		print "!!!!"
+		socketIO.emit('push', content)  
 		self.queue.task_done()
-
-

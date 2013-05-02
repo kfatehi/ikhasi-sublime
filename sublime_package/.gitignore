@@ -1,0 +1,4 @@
+*.swp
+*.tar.gz
+*.pyc
+.DS_Store

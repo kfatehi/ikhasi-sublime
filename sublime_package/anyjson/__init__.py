@@ -139,4 +139,4 @@ else:
     def dumps(value):
         """Deserialize JSON-encoded object to a Python object."""
         return implementation.dumps(value)
-    serialize = dump
+    serialize = dumps
